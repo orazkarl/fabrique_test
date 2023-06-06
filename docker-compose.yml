@@ -1,0 +1,44 @@
+version: '3'
+
+x-base: &base-service
+  build:
+    context: .
+    dockerfile: Dockerfile
+  volumes:
+    - .:/app
+  depends_on:
+    - postgres
+  environment:
+    - DB_NAME=fabrique_db
+    - DB_USER=fabrique_db
+    - DB_PASSWORD=fabrique_db
+    - DB_HOST=postgres-dm
+  networks:
+    - local-network
+
+services:
+  web:
+    <<: *base-service
+    command: /bin/sh -c 'python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    ports:
+      - '8000:8000'
+
+  postgres:
+    hostname: postgres-dm
+    image: postgis/postgis:15-3.3-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: fabrique_db
+      POSTGRES_PASSWORD: fabrique_db
+      POSTGRES_DB: fabrique_db
+    networks:
+      - local-network
+
+volumes:
+  postgres_data:
+
+networks:
+  local-network:
+    name: fabrique_test_network
+    driver: bridge
