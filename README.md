@@ -1,6 +1,10 @@
 # Тестовое задание в Фабрику Решений
 
 ## Запуск проекта
+Нужно добавить токен в environment файле docker-compose.yml
+```
+- SMS_SERVICE_AUTH_TOKEN=<TOKEN>
+```
 
 ```
 docker-compose build

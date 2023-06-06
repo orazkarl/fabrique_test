@@ -13,6 +13,7 @@ x-base: &base-service
     - DB_USER=fabrique_db
     - DB_PASSWORD=fabrique_db
     - DB_HOST=postgres-dm
+    - SMS_SERVICE_AUTH_TOKEN=SMS_SERVICE_AUTH_TOKEN
   networks:
     - local-network
 

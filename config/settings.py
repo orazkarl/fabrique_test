@@ -163,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 SMS_SERVICE_URL = os.getenv("SMS_SERVICE_URL", "https://probe.fbrq.cloud/v1/send/")
-SMS_SERVICE_AUTH_TOKEN = os.environ.get("SMS_SERVICE_AUTH_TOKEN")
+SMS_SERVICE_AUTH_TOKEN = os.environ.get("SMS_SERVICE_AUTH_TOKEN", "SMS_SERVICE_AUTH_TOKEN")
 
 
 REST_FRAMEWORK = {
